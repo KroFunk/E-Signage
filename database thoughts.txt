@@ -1,0 +1,4 @@
+Users table:
+Name //self explanatory
+Email //for login purposes at this stage
+Password //self explanatory

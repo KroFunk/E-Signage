@@ -1,0 +1,48 @@
+20/07/2015
+Created the ‘New E-Sign’ form now works.
+Function bar options are now dynamic and change depending on selection.
+Replaced solid colour with 0.8 opacity with an image - enabling transitions on popups.
+
+16/07/2015
+Implemented the ‘robins.iframe.wrapper.js’.
+Modified ‘robins.iframe.wrapper.js’ for better integration.
+Created the ‘New E-Sign’ form for use in the wrapper.
+
+14/07/2015
+More aesthetic changes and transitions on the browser
+client side optimisations
+Containers are no longer have a dynamic width
+
+09/07/2015
+Double clicking a tile can now be used for navigation
+The option and audit tabs now work correctly
+
+08/07/2015
+Created "tiles" to be used in "E-Sign browser".
+Tiles can now be highlighted, highlighting a second tile will deselect the first.
+Styles tweaked, no more dashed borders on tiles. 
+New column added to database for sign location.
+Sign name in database renamed to sign description.
+Fixed a bug that meant the "E-Sign browser" would not adjust its height if the viewport dimensions changed. 
+
+07/07/2015
+Created base layout for file and sign browser.
+Created Styles for containers and "E-Sign browser".
+
+03/07/2015
+Form names modified on initial user creation form
+created firstuser.php (single use) creates user in users table with information from the initial user creation form (validates first user)
+
+02/07/2015
+Basic folder structure created
+Config and 'Authcheck' separated to ease authentication
+Login page created
+Empty user table check added - Direct to initial user creation form (single use)
+Assets brought in from previous projects:
+	"includes/robins.iframe.wrapper.js"
+	"includes/menu.inc"
+	"includes/footer.inc"
+	"config/config.php"
+	"styles/admin.css"
+Asset added:
+	"styles/images/blur.png"
