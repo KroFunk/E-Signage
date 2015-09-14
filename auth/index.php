@@ -50,7 +50,6 @@ else { //show user creation if there are no users
 <h1>Installation complete!</h1>
 <h2>Create first E-Signage user</h2>
 <form action="firstuser.php" method="POST">
-
 <input class="textbox" id="name" type="text" value="Name" onClick="" onFocus="this.style.color='black'; if(this.value=='Name'){this.value='';}" onblur="if(this.value==''){this.value='Name';this.style.color='grey';}" name="name" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;color:grey;"><br/>
 <input class="textbox" id="email" type="email" value="Email Address"  onclick="if(this.value=='Email Address'){this.value='';this.style.color='black';}" onblur="if(this.value==''){this.value='Email Address';this.style.color='grey';}" name="email" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
 <input class="textbox" id="password" type="text" value="Password" onClick="" onFocus="this.type='password';this.style.color='black'; if(this.value=='Password'){this.value='';}" onblur="if(this.value==''){this.value='Password';this.type='text';this.style.color='grey';}" name="password" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;color:grey;"><br/>
