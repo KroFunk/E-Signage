@@ -6,7 +6,7 @@ $SQLPass="root";
 $SQLDB="esign";
 
 //
-$DocPath="http://localhost:8888/e-signage/";
+$DocPath="http://localhost/e-signage/";
 
 //########################################################################################
 //###################### Nothing should be changed below this point ######################
