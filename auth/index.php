@@ -42,9 +42,11 @@ if($authresult != NULL) { //i.e. if there are users, show the login.
 <input class="textbox" type="submit" value="Login" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
 
-<?
+<?php 
+
 }
 else { //show user creation if there are no users
+
 ?>
 
 <h1>Installation complete!</h1>
@@ -56,7 +58,8 @@ else { //show user creation if there are no users
 <input class="textbox" type="submit" value="Create" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
 
-<?
+<?php
+
 }
 
 ?>
@@ -70,7 +73,9 @@ else { //show user creation if there are no users
 <?php
 if(isset($_GET['message'])){
 echo "<div class='servermessage'>" . $_GET['message'] . "</div>";
-}
+} 
+
 ?>
 </body>
+
 </HTML>
