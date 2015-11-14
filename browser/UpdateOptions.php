@@ -18,9 +18,9 @@ if(isset($_POST['Action'])){
 
 
 
-//////////\\\\\\\\\
-// Create Editor \\
-//////////\\\\\\\\\
+///////////////////
+// Create Editor //
+///////////////////
 
 if($_POST['Action'] == 'CreateEditor') {
 if(isset($_POST['EsignID'])) {
@@ -46,9 +46,9 @@ echo "EsignID missing";
 
 
 
-////////////////////\\\\\\\\\\\\\\\\\\\\\
-// Update the database entry for esign \\
-////////////////////\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////
+// Update the database entry for esign //
+/////////////////////////////////////////
 
 if($_POST['Action'] == 'UpdateEsign') {
 if(isset($_POST['Description']) && isset($_POST['Location']) && isset($_POST['EsignID'])) {
@@ -72,9 +72,9 @@ echo "Description, Location or EsignID missing";
 
 
 
-////////////////////\\\\\\\\\\\\\\\\\\\\\
-// Create the database entry for esign \\
-////////////////////\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////
+// Create the database entry for esign //
+/////////////////////////////////////////
 
 if($_POST['Action'] == 'CreateEsign') {
 if(isset($_POST['Description']) && isset($_POST['Location']) && isset($_POST['Icon'])) {
@@ -104,9 +104,9 @@ echo "Description, Location or EsignID missing";
 
 
 
-////////////////////\\\\\\\\\\\\\\\\\\\\\
-// Delete the database entry for esign \\
-////////////////////\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////
+// Delete the database entry for esign //
+/////////////////////////////////////////
 
 if($_POST['Action'] == 'DeleteEsign') {
 if(isset($_POST['ESignID']) && isset($_POST['Description'])) {
@@ -120,6 +120,7 @@ echo "<input id='InfoButtonOptions' class='InfoButton' type='button' onclick='Up
 echo "<script>
     setTimeout(function(){ 
     parent.closewrapper(); 
+    parent.SelectContainer('deselect');
     parent.CreateContainers('ListSigns');
     }, 1000);
 </script>";
@@ -135,9 +136,9 @@ echo "EsignID missing";
 
 
 
-/////////////////\\\\\\\\\\\\\\\\\\
-// Create Options and Audit tabs \\
-/////////////////\\\\\\\\\\\\\\\\\\
+///////////////////////////////////
+// Create Options and Audit tabs //
+///////////////////////////////////
 
 if($_POST['Action'] == 'CreateOptions') {
 if(isset($_POST['EsignID'])) {
@@ -174,9 +175,9 @@ echo "EsignID missing";
 
 
 
-/////////////////\\\\\\\\\\\\\\\\\\
-// Create Containers for E-Signs \\
-/////////////////\\\\\\\\\\\\\\\\\\
+///////////////////////////////////
+// Create Containers for E-Signs //
+///////////////////////////////////
 
 if($_POST['Action'] == 'ListSigns') {
 
@@ -184,7 +185,7 @@ if($_POST['Action'] == 'ListSigns') {
 $query = mysqli_query($con, "SELECT * FROM `$SQLDB`.`esigns`;") or die ('Unable to execute query. '. mysqli_error($con));
 
 while($result = mysqli_fetch_array($query)){
-echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="javascript:NavigateSign(' . $result['esign_id'] . ')" onblur="SelectContainer(' . "'deselect'" . ');" onclick="javascript:SelectContainer(' . $result['esign_id'] . ');">
+echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="javascript:NavigateSign(' . $result['esign_id'] . ')" onblur="SelectContainer(' . "'deselect'" . ', `Signs`, `E-Sign`);" onclick="javascript:SelectContainer(' . $result['esign_id'] . ', `Signs`, `E-Sign`);">
 <div class="EsignContainerContent">
 <img src="' . $result['sign_icon'] . '" />
 </div>
@@ -196,11 +197,40 @@ echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="j
 </div>
 </div>';
 }
-echo '<div class="EsignContainerPlus" id="containerplus" onclick="javascript:SelectContainer(' . "'deselect'" . '); openwrapper(' . "'UpdateOptions.php?Action=NewSign'" . ', 300, 240);"></div>';
+echo '<div class="EsignContainerPlus" id="containerplus" onclick="javascript:SelectContainer(' . "'deselect'" . ', `Signs`, `E-Sign`); openwrapper(' . "'UpdateOptions.php?Action=NewSigns'" . ', 300, 240);"></div>';
 }
 
 
 
+
+
+
+
+
+/////////////////////////
+// List E-Sign Content //
+/////////////////////////
+
+if($_POST['Action'] == 'ListContent') {
+
+
+$query = mysqli_query($con, "SELECT * FROM `$SQLDB`.`esigns`;") or die ('Unable to execute query. '. mysqli_error($con));
+
+while($result = mysqli_fetch_array($query)){
+echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="javascript:NavigateSign(' . $result['esign_id'] . ')" onblur="SelectContainer(' . "'deselect'" . ', `Content`, `Content`);" onclick="javascript:SelectContainer(' . $result['esign_id'] . ', `Content`, `Content`);">
+<div class="EsignContainerContent">
+<img src="' . $result['sign_icon'] . '" />
+</div>
+<div class="EsignContainerDescription">
+<table style="font-size:inherit; color:inherit;">
+<tr><td align="right">Location:</td><td class="truncate" align="left"><div id="EsignContainerDescriptionLocation' . $result['esign_id'] . '">' . $result['sign_location'] . '</div></td></tr>
+<tr><td align="right">Description:</td><td align="left"><div class="truncate" id="EsignContainerDescriptionDescription' . $result['esign_id'] . '">' . $result['sign_description'] . '</div></td></tr>
+</table>
+</div>
+</div>';
+}
+echo '<div class="EsignContainerPlusContent" id="containerplus" onclick="javascript:SelectContainer(' . "'deselect'" . ', `Content`, `Content`); openwrapper(' . "'UpdateOptions.php?Action=NewContent'" . ', 840, 580);"></div>';
+}
 
 
 
@@ -240,11 +270,11 @@ if (isset($_GET['Action'])) {
 
 
 
-////////////////\\\\\\\\\\\\\\\\
-// Form for Creating  E-Signs \\
-////////////////\\\\\\\\\\\\\\\\
+////////////////////////////////
+// Form for Creating  E-Signs //
+////////////////////////////////
 
-if ($_GET['Action'] == "NewSign") {
+if ($_GET['Action'] == "NewSigns") {
 echo "<div id='InfoLocation' style='padding-top:10px'>New E-Sign</div>
 <form method='POST' style='padding:0;margin:0;' action=''><div style='margin:0 auto; width:242px; padding-top:10px;'><table>
 <tr>
@@ -260,11 +290,61 @@ echo "<div id='InfoLocation' style='padding-top:10px'>New E-Sign</div>
 </div></form>";
 }
 
+//content_id
+//esign_id
+//content_type*
+//content
+//description
+//autosave
+//locked
+//UserID
+//priority
+//status*
+
+////////////////////////////////
+// Form for Creating  Content //
+////////////////////////////////
+
+if ($_GET['Action'] == "NewContent") {
+echo "
+<div style='position:absolute; z-index:999; width:240px; height:120px; overflow-y:scroll; overflow-x:hidden; background:white; border:1px solid #ccc; box-shadow: 5px 5px 50px; border-radius:2px; #000; top:130px; left:100px;' id='contenttypelist'>
+<div class='ListItem'>Text</div>
+<div class='ListItem'>Image</div>
+<div class='ListItem'>Video</div>
+</div>
+
+<div id='InfoLocation' style='padding-top:10px'>New Content</div>
+<div style='float:left;width:300px; margin-top:10px;'>
+&nbsp;Content Options:
+<form method='POST' style='padding:0;margin:0;' action=''><div style='margin:0 auto; width:290px; padding-top:10px;'><table>
+<tr>
+<td><span class='InfoLabel'>Content Type</span></td>
+<td><input name='ContentType' style='border:1px solid #ccc; border-radius:2px; background:#fff; padding:5px;' onfocus=" . '"EnableSubmit(' . "'InfoButtonOptions'" . ');"' . "id='InfoLocationText' maxlength='25' class='InfoTextBox' type='textbox' value='" . '' . "' /></td>
+</tr><tr>
+<td><span class='InfoLabel'>Description</span></td><td><input name='Description' style='border:1px solid #ccc; border-radius:2px; background:#fff; padding:5px;' id='InfoDescription' maxlength='25' class='InfoTextBox' type='textbox' value='" . '' . "' /></td>
+</tr><tr>
+<td><span class='InfoLabel'>Status</span></td><td><input name='Description' style='border:1px solid #ccc; border-radius:2px; background:#fff; padding:5px;' id='InfoDescription' maxlength='25' class='InfoTextBox' type='textbox' value='" . '' . "' /></td>
+</tr></table></div>
+<input name='Action' type='hidden' value='" . 'CreateEsign' . "' />
+<div id='InfoSubmitButton' style='text-align:center'>
+<input id='InfoButtonOptions' class='InfoButton InfoButtonBlue' type='submit' value='Create Content' style='display:inline;' />
+</div></form>
+</div>
+
+<div style='float:right;width:520px; margin-top:10px;'>
+Content:<br>Please select a content type!
+</div>
 
 
-////////////////\\\\\\\\\\\\\\\\
-// Form for Deleting  E-Signs \\
-////////////////\\\\\\\\\\\\\\\\
+";
+}
+
+
+
+
+////////////////////////////////
+// Form for Deleting  E-Signs //
+////////////////////////////////
 if ($_GET['Action'] == "DeleteSign") {
 $esign_id = $_GET['ESign'];
 $query = mysqli_query($con, "SELECT * FROM `esigns` WHERE `esign_id` = $esign_id;") or die ('Unable to execute query. '. mysqli_error($con));

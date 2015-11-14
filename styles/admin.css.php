@@ -237,6 +237,22 @@ transition: 1s;
 overflow:hidden;
 cursor:copy;
 }
+.EsignContainerPlusContent {
+float:left;
+width: 200px;
+height:235px;
+background-color:white;
+background-image:url('../styles/images/plussigncontent.png');
+background-repeat:no-repeat;
+background-position: center center;
+border:1px dashed #bbb;
+margin:20px;
+-webkit-transition: 1s;
+-moz-transition: 1s;
+transition: 1s;
+overflow:hidden;
+cursor:copy;
+}
 .EsignContainerplus img{
 height:260px;
 }
@@ -617,4 +633,20 @@ visibility:hidden;
 -webkit-transition: 0.5s;
 -moz-transition: 0.5s;
 transition: 0.5s;
+}
+.ListItem {
+	border-bottom:1px solid #ccc;
+	padding:10px;
+	-webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    transition: 0.1s;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.ListItem:hover {
+	background-color:#F1FAF6;
 }

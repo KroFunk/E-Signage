@@ -137,7 +137,7 @@ document.getElementById(id).style.display="inline";
 //Select or deselect containers
 var selected = 'nothing';
 var AuditOptionsMessage = "Select an E-Sign from the browser to view its options";
-function SelectContainer(container) {
+function SelectContainer(container, context, language) {
 if (container == 'deselect') {
 if (selected !== 'nothing'){
 document.getElementById(selected).className = "EsignContainer";
@@ -145,7 +145,7 @@ selected = 'nothing';
 document.getElementById('InfoAudit').innerHTML = AuditOptionsMessage;
 document.getElementById('InfoOptions').innerHTML = AuditOptionsMessage;
 document.getElementById('InfoLocation').innerHTML = "E-Signage Browser";
-document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'ListSigns'" + ');">Reload E-Signs</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=NewSign'" + ', 300, 240);">Create New E-Sign</a>';
+document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'List" + context + "'" + ');">Reload ' + language + '</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=New" + context + "'" + ', 300, 240);">Create New ' + language + '</a>';
 }
 }
 else {
@@ -162,7 +162,7 @@ document.getElementById('InfoAudit').innerHTML = "woo audit";
 
 
 //update top menu
-document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'ListSigns'" + ');">Reload E-Signs</a><a href="#" onclick="SelectContainer(' + "'deselect'" + ');">Deselect E-Sign</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=DeleteSign&ESign=" + container + "'" +', 300, 240);">Delete E-Sign</a>';
+document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'List" + context + "'" + ');">Reload ' + language + '</a><a href="#" onclick="SelectContainer(' + "'deselect'" + ');">Deselect ' + language + '</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=Delete" + context + "&ESign=" + container + "'" +', 300, 240);">Delete ' + language + '</a>';
 
 
 if (selected !== 'nothing'){
@@ -176,13 +176,13 @@ selected = 'nothing';
 document.getElementById('InfoAudit').innerHTML = AuditOptionsMessage;
 document.getElementById('InfoOptions').innerHTML = AuditOptionsMessage;
 document.getElementById('InfoLocation').innerHTML = "E-Signage Browser";
-document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'ListSigns'" + ');">Reload E-Signs</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=NewSign'" + ', 300, 240);">Create New E-Sign</a>';
+document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'List" + context + "'" + ');">Reload ' + language + '</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=New" + context + "'" + ', 300, 240);">Create New ' + language + '</a>';
 }
 }
 }
 
 
-function CreateContainers(type) {
+function CreateContainers(type,id) {
 var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -207,7 +207,7 @@ xmlhttp.onreadystatechange=function()
   
 xmlhttp.open("POST","UpdateOptions.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("Action=" + type);
+xmlhttp.send("Action=" + type + "&ID=" + id);
 }
 
 
@@ -223,7 +223,8 @@ document.getElementById('Info' + remove).style.display = 'none';
 
 // Doubleclick navigation
 function NavigateSign(sign) {
-window.location.assign('<?php echo $DocPath; ?>browser/?show=single&sign=' + sign);
+//window.location.assign('<?php echo $DocPath; ?>browser/?show=single&sign=' + sign);
+CreateContainers('ListContent',sign)
 }
 
 // Search box aesthetics 
