@@ -185,7 +185,7 @@ if($_POST['Action'] == 'ListSigns') {
 $query = mysqli_query($con, "SELECT * FROM `$SQLDB`.`esigns`;") or die ('Unable to execute query. '. mysqli_error($con));
 
 while($result = mysqli_fetch_array($query)){
-echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="javascript:NavigateSign(' . $result['esign_id'] . ')" onblur="SelectContainer(' . "'deselect'" . ', `Signs`, `E-Sign`);" onclick="javascript:SelectContainer(' . $result['esign_id'] . ', `Signs`, `E-Sign`);">
+echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="javascript:NavigateSign(' . $result['esign_id'] . ', `' . $result['sign_location'] . '`)" onblur="SelectContainer(' . "'deselect'" . ', `Signs`, `E-Sign`);" onclick="javascript:SelectContainer(' . $result['esign_id'] . ', `Signs`, `E-Sign`);">
 <div class="EsignContainerContent">
 <img src="' . $result['sign_icon'] . '" />
 </div>
@@ -214,17 +214,17 @@ echo '<div class="EsignContainerPlus" id="containerplus" onclick="javascript:Sel
 if($_POST['Action'] == 'ListContent') {
 
 
-$query = mysqli_query($con, "SELECT * FROM `$SQLDB`.`esigns`;") or die ('Unable to execute query. '. mysqli_error($con));
+$query = mysqli_query($con, "SELECT * FROM `$SQLDB`.`content` WHERE `esign_id` = 1 ORDER BY `priority` ASC;") or die ('Unable to execute query. '. mysqli_error($con));
 
 while($result = mysqli_fetch_array($query)){
-echo '<div class="EsignContainer" id="' . $result['esign_id'] . '" ondblclick="javascript:NavigateSign(' . $result['esign_id'] . ')" onblur="SelectContainer(' . "'deselect'" . ', `Content`, `Content`);" onclick="javascript:SelectContainer(' . $result['esign_id'] . ', `Content`, `Content`);">
+echo '<div class="EsignContainer" id="' . $result['content_id'] . '" ondblclick="javascript:NavigateSign(' . $result['content_id'] . ')" onblur="SelectContainer(' . "'deselect'" . ', `Content`, `Content`);" onclick="javascript:SelectContainer(' . $result['content_id'] . ', `Content`, `Content`);">
 <div class="EsignContainerContent">
-<img src="' . $result['sign_icon'] . '" />
+<!--img-->
 </div>
 <div class="EsignContainerDescription">
 <table style="font-size:inherit; color:inherit;">
-<tr><td align="right">Location:</td><td class="truncate" align="left"><div id="EsignContainerDescriptionLocation' . $result['esign_id'] . '">' . $result['sign_location'] . '</div></td></tr>
-<tr><td align="right">Description:</td><td align="left"><div class="truncate" id="EsignContainerDescriptionDescription' . $result['esign_id'] . '">' . $result['sign_description'] . '</div></td></tr>
+<tr><td align="right">Location:</td><td class="truncate" align="left"><div id="EsignContainerDescriptionLocation' . $result['content_type'] . '">' . $result['content_type'] . '</div></td></tr>
+<tr><td align="right">Description:</td><td align="left"><div class="truncate" id="EsignContainerDescriptionDescription' . $result['description'] . '">' . $result['description'] . '</div></td></tr>
 </table>
 </div>
 </div>';
@@ -307,10 +307,10 @@ echo "<div id='InfoLocation' style='padding-top:10px'>New E-Sign</div>
 
 if ($_GET['Action'] == "NewContent") {
 echo "
-<div style='position:absolute; z-index:999; width:240px; height:120px; overflow-y:scroll; overflow-x:hidden; background:white; border:1px solid #ccc; box-shadow: 5px 5px 50px; border-radius:2px; #000; top:130px; left:100px;' id='contenttypelist'>
-<div class='ListItem'>Text</div>
-<div class='ListItem'>Image</div>
-<div class='ListItem'>Video</div>
+<div style='display:none; position:absolute; z-index:999; width:175px; overflow-y:scroll; overflow-x:hidden; background:white; border:1px solid #ccc; border-bottom:0px; border-radius:2px; #000; top:95px; left:100px;' id='contenttypelist'>
+<div class='ListItem' onclick='document.getElementById(`contenttypelist`).style.display = `none`; document.getElementById(`ContentTypeText`).value = `Text`'>Text</div>
+<div class='ListItem' onclick='document.getElementById(`contenttypelist`).style.display = `none`; document.getElementById(`ContentTypeText`).value = `Image`'>Image</div>
+<div class='ListItem' onclick='document.getElementById(`contenttypelist`).style.display = `none`; document.getElementById(`ContentTypeText`).value = `Video`'>Video</div>
 </div>
 
 <div id='InfoLocation' style='padding-top:10px'>New Content</div>
@@ -319,7 +319,7 @@ echo "
 <form method='POST' style='padding:0;margin:0;' action=''><div style='margin:0 auto; width:290px; padding-top:10px;'><table>
 <tr>
 <td><span class='InfoLabel'>Content Type</span></td>
-<td><input name='ContentType' style='border:1px solid #ccc; border-radius:2px; background:#fff; padding:5px;' onfocus=" . '"EnableSubmit(' . "'InfoButtonOptions'" . ');"' . "id='InfoLocationText' maxlength='25' class='InfoTextBox' type='textbox' value='" . '' . "' /></td>
+<td><input name='ContentType' onclick='document.getElementById(`contenttypelist`).style.display = `block`;' style='border:1px solid #ccc; border-radius:2px; background:#fff; padding:5px;' id='ContentTypeText' maxlength='25' class='InfoTextBox' type='textbox' value='" . '' . "' /></td>
 </tr><tr>
 <td><span class='InfoLabel'>Description</span></td><td><input name='Description' style='border:1px solid #ccc; border-radius:2px; background:#fff; padding:5px;' id='InfoDescription' maxlength='25' class='InfoTextBox' type='textbox' value='" . '' . "' /></td>
 </tr><tr>

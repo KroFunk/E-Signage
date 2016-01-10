@@ -11,7 +11,7 @@
 
 <div id="MainMenu">
 
-<div id="Path">E-Signage &rsaquo; Signs</div>
+<div id="Path">E-Signage &rsaquo; <a href="#" style='color:white;' onclick="CreateContainers('ListSigns');ResetPath();">Signs</a></div>
 
 <div id="Functions">
 <a href="#" onclick="CreateContainers('ListSigns');">Reload E-Signs</a>

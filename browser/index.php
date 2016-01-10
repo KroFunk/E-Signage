@@ -222,9 +222,15 @@ document.getElementById('Info' + remove).style.display = 'none';
 }
 
 // Doubleclick navigation
-function NavigateSign(sign) {
+function NavigateSign(sign, location) {
 //window.location.assign('<?php echo $DocPath; ?>browser/?show=single&sign=' + sign);
 CreateContainers('ListContent',sign)
+document.getElementById('Path').innerHTML = document.getElementById('Path').innerHTML + ' &rsaquo; ' + location;
+}
+
+// Reset the path box 
+function ResetPath(){
+document.getElementById('Path').innerHTML = "E-Signage &rsaquo; <a href='#' style='color:white;' onclick='CreateContainers(`ListSigns`);ResetPath();'>Signs</a>";
 }
 
 // Search box aesthetics 
