@@ -11,7 +11,7 @@ require ('../includes/authcheck.php');
 <script src='../includes/jquery.min.js'></script>
 </head>
 <body style="margin:0px; padding:0px;">
-<?
+<?php
 
 if(isset($_POST['Action'])){
 
@@ -25,14 +25,8 @@ if(isset($_POST['Action'])){
 if($_POST['Action'] == 'CreateEditor') {
 if(isset($_POST['EsignID'])) {
 
-echo "<input id='InfoButtonOptions' class='InfoButton' type='button' onclick='UpdateOptions();' value='Save Changes' style='display:none;' />
+echo "<input id='InfoButtonOptions' class='InfoButton' type='button' onclick='UpdateOptions();' value='Save Changes' style='display:none;' /><textarea></textarea>";
 
-<textarea>
-
-</textarea>
-
-
-";
 
 }
 else {
