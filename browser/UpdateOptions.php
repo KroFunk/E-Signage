@@ -114,7 +114,7 @@ echo "<input id='InfoButtonOptions' class='InfoButton' type='button' onclick='Up
 echo "<script>
     setTimeout(function(){ 
     parent.closewrapper(); 
-    parent.SelectContainer('deselect');
+    parent.SelectContainer('deselect', `Signs`, `E-Sign`);
     parent.CreateContainers('ListSigns');
     }, 1000);
 </script>";

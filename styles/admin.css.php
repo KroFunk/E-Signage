@@ -151,12 +151,15 @@ Float:left;
 /*width:80%;*/
 overflow-y:auto;
 background:#fbfbfb;
+position:fixed;
 }
 #InfoWindow {
-Float:left;
+Float:right;
 width:299px;
 background:#eee;
 overflow-y:auto;
+position:fixed;
+right:0px;
 }
 #InfoWindowContainer {
 border-left:1px solid #ddd;

@@ -115,7 +115,7 @@ var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 document.getElementById('InfoWindow').style.height = (h - 110);
 document.getElementById('InfoWindowContainer').style.height = (h - 150);
 document.getElementById('ContentWindow').style.height = (h - 110);
-document.getElementById('ContentWindow').style.width = (w - 310);
+document.getElementById('ContentWindow').style.width = (w - 300);
 
 CreateContainers('ListSigns');
 }
@@ -126,7 +126,7 @@ w = window.innerWidth;
 document.getElementById('InfoWindow').style.height = (h - 110);
 document.getElementById('InfoWindowContainer').style.height = (h - 150);
 document.getElementById('ContentWindow').style.height = (h - 110);
-document.getElementById('ContentWindow').style.width = (w - 310);
+document.getElementById('ContentWindow').style.width = (w - 300);
 }
 
 //show an display:none element
@@ -162,7 +162,7 @@ document.getElementById('InfoAudit').innerHTML = "woo audit";
 
 
 //update top menu
-document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'List" + context + "'" + ');">Reload ' + language + '</a><a href="#" onclick="SelectContainer(' + "'deselect'" + ');">Deselect ' + language + '</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=Delete" + context + "&ESign=" + container + "'" +', 300, 240);">Delete ' + language + '</a>';
+document.getElementById('Functions').innerHTML = '<a href="#" onclick="CreateContainers(' + "'List" + context + "'" + ');">Reload ' + language + '</a><a href="#" onclick="SelectContainer(`deselect`, `Signs`, `E-Sign`);">Deselect ' + language + '</a><a href="#" onclick="openwrapper(' + "'UpdateOptions.php?Action=Delete" + context + "&ESign=" + container + "'" +', 300, 240);">Delete ' + language + '</a>';
 
 
 if (selected !== 'nothing'){
